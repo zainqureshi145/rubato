@@ -16,6 +16,11 @@ public class Admins {
     private String email;
     @Column(name = "phone")
     private String phone;
+    @Column(name = "password")
+    @org.springframework.data.annotation.Transient
+    private String password;
+
+
 ////Generate Getters and Setters
     public int getIdAdmin() {
         return idAdmin;
@@ -55,6 +60,14 @@ public class Admins {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

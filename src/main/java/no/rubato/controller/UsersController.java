@@ -34,7 +34,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/users/{searchId}", method = RequestMethod.GET)
-    public List<Users> getUserBySearchId(@PathVariable String searchId) {
+    public List<Users> getBySearchId(@PathVariable String searchId) {
         return usersService.findBySearchId(searchId);
     }
 }

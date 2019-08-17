@@ -22,38 +22,9 @@ public class Users {
     private String phone;
     @Column(name = "city")
     private String city;
-    @Column(name = "enabled")
-    private boolean enabled;
-    @Column(name = "token")
-    private String token;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     @Column(name = "password")
     @Transient
     private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     ////Generate Getters and Setters
     public int getIdUser() {
@@ -102,5 +73,13 @@ public class Users {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
