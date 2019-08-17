@@ -5,33 +5,32 @@ import no.rubato.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service("usersService")
 public class UsersService {
-    private UsersRepository usersRepository;
+  private UsersRepository usersRepository;
 
-    @Autowired
-    public UsersService(UsersRepository usersRepository){
-        this.usersRepository = usersRepository;
-    }
+  @Autowired
+  public UsersService(UsersRepository usersRepository) {
+    this.usersRepository = usersRepository;
+  }
 
-    public Users findByIdUser(int idUser){
-        return usersRepository.findByIdUser(idUser);
-    }
-    public Users findByFirstName(String firstName){
-        return usersRepository.findByFirstName(firstName);
-    }
-    public Users findByLastName(String lastName){
-        return usersRepository.findByLastName(lastName);
-    }
-    public Users findByEmail(String email){
-        return usersRepository.findByEmail(email);
-    }
+  public Users saveUser(Users users) {
+      // add logic to do some validation before creating user object
+    return usersRepository.save(users);
+  }
 
-    public Users findByToken(String token){
-        return usersRepository.findByToken(token);
-    }
+  public List<Users> searchUser(String search) {
+    return usersRepository.findAll().stream()
+        .filter(
+            user ->
+                user.getEmail().equals(search)
+                    || user.getFirstName().equals(search)
+                    || user.getLastName().equals(search))
+        .collect(Collectors.toList());
+  }
 
-    public void saveUser(Users users){
-        usersRepository.save(users);
-    }
+  public List<Users> getAllUsers() { return usersRepository.findAll(); }
 }
