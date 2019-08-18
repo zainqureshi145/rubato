@@ -6,11 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table(name="users")
-public class Users {
+@Table(name="persons")
+public class Persons {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int idUser;
+    private long idPerson;
     @Column(name="first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -25,14 +25,16 @@ public class Users {
     @Column(name = "password")
     @Transient
     private String password;
+    @Column(name = "is_admin")
+    private String isAdmin;
 
     ////Generate Getters and Setters
-    public int getIdUser() {
-        return idUser;
+    public long getIdPerson() {
+        return idPerson;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdPerson(long idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getFirstName() {
@@ -82,4 +84,13 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
 }
