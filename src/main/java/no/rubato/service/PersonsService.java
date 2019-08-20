@@ -33,12 +33,8 @@ public class PersonsService {
                         persons.getLastName().equals(searchId) ||
                         persons.getCity().equals(searchId) ||
                         persons.getPhone().equals(searchId) ||
-                        persons.getIsAdmin().equals(searchId)
+                        persons.getRole().equals(searchId)
         ).collect(Collectors.toList());
-    }
-
-    public Persons findByIdPerson(long idPerson) {
-        return personsRepository.findByIdPerson(idPerson);
     }
 
     public Persons savePerson(Persons persons) {

@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="persons")
@@ -35,8 +37,12 @@ public class Persons implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
-    @Column(name = "is_admin")
-    private String isAdmin;
+    @Column(name = "role")
+    private String role;
+
+    //OneToMany with Project
+    //@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "person", orphanRemoval = true)
+    //private List<Persons> persons = new ArrayList<>();
 
     public Persons() {
     }
@@ -98,12 +104,12 @@ public class Persons implements UserDetails {
         this.password = password;
     }
 
-    public String getIsAdmin() {
-        return isAdmin;
+    public String getRole() {
+        return role;
     }
 
-    public void setIsAdmin(String isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getConfirmPassword() {
