@@ -29,8 +29,8 @@ public class PersonsController {
     public PersonsController() {
     }
 
-    @Autowired
-    public PersonsRepository personsRepository;//personsRepository Object
+    //@Autowired
+    //public PersonsRepository personsRepository;//personsRepository Object
     @Autowired
     public PersonsService personsService;//personsService Object
     @Autowired
