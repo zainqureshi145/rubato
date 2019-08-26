@@ -50,5 +50,9 @@ public class PersonsService {
             throw new UsernameAlreadyExistsException("Username '" + persons.getUsername() + "' already exists");
         }
     }
+
+    public List<Persons> getAll(){
+        return personsRepository.findAll();
+    }
 }
 
