@@ -14,12 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static no.rubato.security.SecurityConstants.TOKEN_PREFIX;
 
@@ -69,7 +75,7 @@ public class RegisterController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        Collection<? extends GrantedAuthority> role = authentication.getAuthorities();
         String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
     }

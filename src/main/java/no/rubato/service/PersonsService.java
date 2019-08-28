@@ -54,5 +54,6 @@ public class PersonsService {
     public List<Persons> getAll(){
         return personsRepository.findAll();
     }
+
 }
 

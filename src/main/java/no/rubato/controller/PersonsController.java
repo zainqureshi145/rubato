@@ -17,7 +17,7 @@ public class PersonsController {
     @Autowired
     public PersonsService personsService;//personsService Object
 
-    @GetMapping("/all")
+    @GetMapping("/all")//Show all Users from Database
     public ResponseEntity<?> getAll(){
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
