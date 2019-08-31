@@ -50,11 +50,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--Thymeleaf===-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
         <!--Spring Security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,11 +74,6 @@
             <groupId>com.nulab-inc</groupId>
             <artifactId>zxcvbn</artifactId>
             <version>1.2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
         </dependency>
     </dependencies>
 

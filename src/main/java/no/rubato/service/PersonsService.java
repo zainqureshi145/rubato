@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +28,6 @@ public class PersonsService {
     public List<Persons> findBySearchId(String searchId) {
         return personsRepository.findAll().stream().filter(
                 persons -> persons.getUsername().equals(searchId) ||
-                        persons.getFirstName().equals(searchId) ||
-                        persons.getLastName().equals(searchId) ||
-                        persons.getCity().equals(searchId) ||
                         persons.getPhone().equals(searchId) ||
                         persons.getRole().equals(searchId)
         ).collect(Collectors.toList());

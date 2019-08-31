@@ -6,12 +6,16 @@ import javax.persistence.*;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id_order")
     private int idOrder;
-    @Column(name = "id_user_o")
-    private int idUser;
-    @Column(name = "id_band_o")
-    private int idBand;
+    @Column(name = "id_person")
+    private int idPerson;
+    @Column(name = "transaction")
+    private String transaction;
+
 ////Generate Getters and Setters
+
+
     public int getIdOrder() {
         return idOrder;
     }
@@ -20,19 +24,19 @@ public class Orders {
         this.idOrder = idOrder;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getIdPerson() {
+        return idPerson;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
     }
 
-    public int getIdBand() {
-        return idBand;
+    public String getTransaction() {
+        return transaction;
     }
 
-    public void setIdBand(int idBand) {
-        this.idBand = idBand;
+    public void setTransaction(String transaction) {
+        this.transaction = transaction;
     }
 }
