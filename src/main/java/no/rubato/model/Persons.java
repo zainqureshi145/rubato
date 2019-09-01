@@ -9,19 +9,35 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="persons")
 public class Persons implements UserDetails {
+
+    public Persons(@NotBlank(message = "Name is required") String name, @Email(message = "Username should be an email") @NotEmpty(message = "Please Provide a valid Email Address") String username, String phone, @NotBlank(message = "Password is required") String password, String confirmPassword, String role, String vipps, String about, String price, List<Images> images, List<Audio> audio, List<Video> video) {
+        this.name = name;
+        this.username = username;
+        this.phone = phone;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.role = role;
+        this.vipps = vipps;
+        this.about = about;
+        this.price = price;
+        this.images = images;
+        this.audio = audio;
+        this.video = video;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPerson;
     @NotBlank(message = "Name is required")
     @Column(name="name")
     private String name;
     @Email(message = "Username should be an email")
     @NotEmpty(message = "Please Provide a valid Email Address")
-    @Column(unique = true)
     private String username;
     @Column(name = "phone")
     private String phone;
@@ -34,6 +50,17 @@ public class Persons implements UserDetails {
     private String role;
     @Column(name = "vipps")
     private String vipps;
+    @Column(name = "about")
+    private String about;
+    @Column(name = "price")
+    private String price;
+
+    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Images> images;
+    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Audio> audio;
+    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Video> video;
 
     //OneToMany with Project
     //@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "person", orphanRemoval = true)
@@ -106,6 +133,48 @@ public class Persons implements UserDetails {
     public void setVipps(String vipps) {
         this.vipps = vipps;
     }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public List<Images> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Images> images) {
+        this.images = images;
+    }
+
+    public List<Audio> getAudio() {
+        return audio;
+    }
+
+    public void setAudio(List<Audio> audio) {
+        this.audio = audio;
+    }
+
+    public List<Video> getVideo() {
+        return video;
+    }
+
+    public void setVideo(List<Video> video) {
+        this.video = video;
+    }
+
 
     //UserDetails interface methods
 

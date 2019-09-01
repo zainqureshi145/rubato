@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class PersonsController {
     public PersonsController() {
     }
@@ -19,8 +19,6 @@ public class PersonsController {
 
     @GetMapping("/all")//Show all Users from Database
     public ResponseEntity<?> getAll(){
-//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
         return new ResponseEntity<>(personsService.getAll(), HttpStatus.OK);
     }
 }

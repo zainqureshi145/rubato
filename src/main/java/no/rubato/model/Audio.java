@@ -1,14 +1,16 @@
 package no.rubato.model;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Images {
+public class Audio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_image")
-    private long idImage;
+    @Column(name = "id_audio")
+    private long idAudio;
     @Column(name = "name")
     private String name;
     @Column(name = "path")
@@ -17,16 +19,15 @@ public class Images {
     private String type;
 
     @ManyToOne
-    //@JoinColumn(name = "persons_id_image")
+   // @JoinColumn(name = "persons_id_audio")
     private Persons persons;
 
-
-    public long getIdImage() {
-        return idImage;
+    public long getIdAudio() {
+        return idAudio;
     }
 
-    public void setIdImage(int idImage) {
-        this.idImage = idImage;
+    public void setIdAudio(int idAudio) {
+        this.idAudio = idAudio;
     }
 
     public String getName() {

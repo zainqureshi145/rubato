@@ -1,14 +1,13 @@
 package no.rubato.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-public class Images {
+public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_image")
-    private long idImage;
+    @Column(name = "id_video")
+    private long idVideo;
     @Column(name = "name")
     private String name;
     @Column(name = "path")
@@ -17,16 +16,15 @@ public class Images {
     private String type;
 
     @ManyToOne
-    //@JoinColumn(name = "persons_id_image")
+    //@JoinColumn(name = "persons_id_video")
     private Persons persons;
 
-
-    public long getIdImage() {
-        return idImage;
+    public long getIdVideo() {
+        return idVideo;
     }
 
-    public void setIdImage(int idImage) {
-        this.idImage = idImage;
+    public void setIdVideo(int idVideo) {
+        this.idVideo = idVideo;
     }
 
     public String getName() {

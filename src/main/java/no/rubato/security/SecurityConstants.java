@@ -1,8 +1,9 @@
 package no.rubato.security;
 
 public class SecurityConstants {
-    public static final String SIGN_UP_URLS = "/api/**";
-    public static final String SIGN_UP_BAND = "/api2/**";
+    public static final String SIGN_UP_URLS = "/api/register/**";
+    public static final String VIEW_USERS = "/api/users/**";
+    public static final String VIEW_BANDS = "/api/bands/**";
     public static final String H2_URL = "/h2-console/**";
     public static final String SECRET = "SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX = "Bearer ";

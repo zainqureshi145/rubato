@@ -1,7 +1,6 @@
 package no.rubato.security;
 
 import io.jsonwebtoken.*;
-import no.rubato.model.Bands;
 import no.rubato.model.Persons;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
