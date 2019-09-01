@@ -15,22 +15,22 @@ import static no.rubato.security.SecurityConstants.SECRET;
 
 //Generate and Validate the token and getPersonId from the token
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProviderBands {
     //Generate Token
     public String generateToken(Authentication authentication){
-        Persons persons = (Persons)authentication.getPrincipal();
+        //Bands bands = (Bands) authentication.getPrincipal();
+        Bands bands = (Bands) authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
         Date expiryDate = new Date(now.getTime()+EXPIRATION_TIME);
-        String idPerson = Long.toString(persons.getIdPerson());
+        String idBand = Long.toString(bands.getIdBand());
         Map<String, Object> claims = new HashMap<>();
-        claims.put("idPerson", Long.toString(persons.getIdPerson()));
-        claims.put("username", persons.getUsername());
-        claims.put("role", persons.getRole());
+        claims.put("idBand", Long.toString(bands.getIdBand()));
+        claims.put("username", bands.getUsername());
+        claims.put("name", bands.getName());
 
 
         return Jwts.builder()
-                .setSubject(idPerson)
-                //.setSubject(idBand)
+                .setSubject(idBand)
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
@@ -58,9 +58,9 @@ public class JwtTokenProvider {
     }
 
     //Get Person Id from token
-    public long getPersonIdFromJWT(String token){
+    public long getBandsIdFromJWT(String token){
         Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
-        String id = (String)claims.get("idPerson");
+        String id = (String)claims.get("idBands");
         return Long.parseLong(id);
     }
 

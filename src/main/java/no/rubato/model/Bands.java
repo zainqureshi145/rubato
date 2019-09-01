@@ -1,10 +1,16 @@
 package no.rubato.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 
 @Entity
-public class Bands {
+@Table(name = "bands")
+public class Bands implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_band")
@@ -12,7 +18,7 @@ public class Bands {
     @Column(name = "name")
     private String name;
     @Column(name = "email")
-    private String email;
+    private String username;
     @Column(name = "phone")
     private String phone;
     @Column(name = "password")
@@ -45,12 +51,12 @@ public class Bands {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPhone() {
@@ -107,5 +113,35 @@ public class Bands {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEnabled() {
+        return true;
     }
 }
