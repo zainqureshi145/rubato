@@ -15,8 +15,7 @@ public class Video {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne
-    //@JoinColumn(name = "persons_id_video")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Persons persons;
 
     public long getIdVideo() {

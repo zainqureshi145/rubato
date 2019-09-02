@@ -18,8 +18,7 @@ public class Audio {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne
-   // @JoinColumn(name = "persons_id_audio")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Persons persons;
 
     public long getIdAudio() {

@@ -1,6 +1,7 @@
 package no.rubato.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Orders {
@@ -8,10 +9,11 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_order")
     private int idOrder;
-    @Column(name = "id_person")
-    private int idPerson;
     @Column(name = "transaction")
     private String transaction;
+
+    @ManyToMany
+    private List<Persons> persons;
 
 ////Generate Getters and Setters
 
@@ -22,14 +24,6 @@ public class Orders {
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
-    }
-
-    public int getIdPerson() {
-        return idPerson;
-    }
-
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
     }
 
     public String getTransaction() {

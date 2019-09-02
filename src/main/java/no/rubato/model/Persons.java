@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name="persons")
 public class Persons implements UserDetails {
 
-    public Persons(@NotBlank(message = "Name is required") String name, @Email(message = "Username should be an email") @NotEmpty(message = "Please Provide a valid Email Address") String username, String phone, @NotBlank(message = "Password is required") String password, String confirmPassword, String role, String vipps, String about, String price, List<Images> images, List<Audio> audio, List<Video> video) {
+    public Persons(@NotBlank(message = "Name is required") String name, @Email(message = "Username should be an email") @NotEmpty(message = "Please Provide a valid Email Address") String username, String phone, @NotBlank(message = "Password is required") String password, String confirmPassword, String role, String vipps, String about, String price, List<Images> images, List<Audio> audio, List<Video> video, List<Orders> orders) {
         this.name = name;
         this.username = username;
         this.phone = phone;
@@ -28,10 +28,12 @@ public class Persons implements UserDetails {
         this.images = images;
         this.audio = audio;
         this.video = video;
+        this.orders = orders;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_persons")
     private long idPerson;
     @NotBlank(message = "Name is required")
     @Column(name="name")
@@ -55,13 +57,14 @@ public class Persons implements UserDetails {
     @Column(name = "price")
     private String price;
 
-    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Images> images;
-    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Audio> audio;
-    @OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Video> video;
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Orders> orders;
     //OneToMany with Project
     //@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "person", orphanRemoval = true)
     //private List<Persons> persons = new ArrayList<>();
@@ -175,6 +178,13 @@ public class Persons implements UserDetails {
         this.video = video;
     }
 
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
 
     //UserDetails interface methods
 

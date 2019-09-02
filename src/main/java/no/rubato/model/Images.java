@@ -16,8 +16,7 @@ public class Images {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne
-    //@JoinColumn(name = "persons_id_image")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Persons persons;
 
 
