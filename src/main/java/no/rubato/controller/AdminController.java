@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -43,6 +45,11 @@ public class AdminController {
         }
         personsService.deletePersonById(id);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    ///List All Users
+    @GetMapping("/list-all")//Show all Users from Database
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(personsService.getAll(), HttpStatus.OK);
     }
     ///More Complex Booking Request Mapping
 
