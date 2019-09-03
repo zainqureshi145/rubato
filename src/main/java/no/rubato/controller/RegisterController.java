@@ -24,13 +24,30 @@ import static no.rubato.security.SecurityConstants.TOKEN_PREFIX;
 @RestController
 @RequestMapping("/api/register")
 public class RegisterController {
-    public RegisterController() {
+
+    private final PersonsService personsService;
+    private final MapValidationErrorService mapValidationErrorService;
+    private final PersonValidator personValidator;
+    private final JwtTokenProvider tokenProvider;
+    private final AuthenticationManager authenticationManager;
+
+    //Using Constructor Based Dependency Injection(Spring Recommended)
+    @Autowired
+    public RegisterController(PersonsService personsService, MapValidationErrorService mapValidationErrorService, PersonValidator personValidator,
+                              JwtTokenProvider tokenProvider, AuthenticationManager authenticationManager){
+        this.personsService = personsService;
+        this.mapValidationErrorService = mapValidationErrorService;
+        this.personValidator = personValidator;
+        this.tokenProvider = tokenProvider;
+        this.authenticationManager = authenticationManager;
     }
+    /*//public RegisterController() {
+    //}
 
     //@Autowired
     //public PersonsRepository personsRepository;//personsRepository Object
-    @Autowired
-    public PersonsService personsService;//personsService Object
+    //@Autowired
+    //public PersonsService personsService;//personsService Object
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
     @Autowired
@@ -39,6 +56,8 @@ public class RegisterController {
     private JwtTokenProvider tokenProvider;
     @Autowired
     private AuthenticationManager authenticationManager;
+
+     */
 
     ////Register Person
     @CrossOrigin

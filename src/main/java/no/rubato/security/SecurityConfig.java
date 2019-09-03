@@ -26,14 +26,28 @@ import static no.rubato.security.SecurityConstants.*;
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
+    private final CustomPersonDetailsService customPersonDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
+    SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, CustomPersonDetailsService customPersonDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder){
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.customPersonDetailsService = customPersonDetailsService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+   /* @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
     private CustomPersonDetailsService customPersonDetailsService;
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(){ return new JwtAuthenticationFilter();}
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    */
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(){ return new JwtAuthenticationFilter();}
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -70,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers(SIGN_UP_URLS).permitAll()
-                //.antMatchers(H2_URL).permitAll()
+                .antMatchers(VIEW_ADMIN).permitAll()
                 .antMatchers(VIEW_BANDS).permitAll()
                 .antMatchers(VIEW_USERS).permitAll()
                 .anyRequest()

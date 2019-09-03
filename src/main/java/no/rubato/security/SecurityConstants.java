@@ -4,7 +4,7 @@ public class SecurityConstants {
     public static final String SIGN_UP_URLS = "/api/register/**";
     public static final String VIEW_USERS = "/api/users/**";
     public static final String VIEW_BANDS = "/api/bands/**";
-    public static final String H2_URL = "/h2-console/**";
+    public static final String VIEW_ADMIN = "/api/admin/**";
     public static final String SECRET = "SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";

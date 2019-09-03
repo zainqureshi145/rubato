@@ -24,7 +24,7 @@ public class PersonsService {
         this.personsRepository = personsRepository;
     }
 
-    //Search Function
+    //Search Function Unused For Now
     public List<Persons> findBySearchId(String searchId) {
         return personsRepository.findAll().stream().filter(
                 persons -> persons.getUsername().equals(searchId) ||
@@ -32,7 +32,11 @@ public class PersonsService {
                         persons.getRole().equals(searchId)
         ).collect(Collectors.toList());
     }
-
+    //Find By id
+    public Persons findBySearchId(long id){
+        return personsRepository.getByIdPerson(id);
+    }
+    //Save
     public Persons savePerson(Persons persons) {
         try {
             persons.setPassword(bCryptPasswordEncoder.encode(persons.getPassword()));
@@ -46,10 +50,18 @@ public class PersonsService {
             throw new UsernameAlreadyExistsException("Username '" + persons.getUsername() + "' already exists");
         }
     }
-
+    //Update
+    public void updatePerson(Persons persons){
+        persons.setPassword(bCryptPasswordEncoder.encode(persons.getPassword()));
+        personsRepository.save(persons);
+    }
+    //List All Users for Admin Dashboard
     public List<Persons> getAll(){
         return personsRepository.findAll();
     }
-
+    //Delete
+    public void deletePersonById(long id){
+        personsRepository.deleteById(id);
+    }
 }
 

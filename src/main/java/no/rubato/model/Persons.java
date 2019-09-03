@@ -15,7 +15,12 @@ import java.util.List;
 @Table(name="persons")
 public class Persons implements UserDetails {
 
-    public Persons(@NotBlank(message = "Name is required") String name, @Email(message = "Username should be an email") @NotEmpty(message = "Please Provide a valid Email Address") String username, String phone, @NotBlank(message = "Password is required") String password, String confirmPassword, String role, String vipps, String about, String price, List<Images> images, List<Audio> audio, List<Video> video, List<Orders> orders) {
+    public Persons(@NotBlank(message = "Name is required") String name,
+                   @Email(message = "Username should be an email") @NotEmpty(message = "Please Provide a valid Email Address")
+                           String username, String phone, @NotBlank(message = "Password is required")
+                           String password, String confirmPassword, String role, String vipps, String about, String price,
+                   List<Images> images, List<Audio> audio, List<Video> video, List<Orders> orders) {
+
         this.name = name;
         this.username = username;
         this.phone = phone;
