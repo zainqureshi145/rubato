@@ -51,6 +51,11 @@ public class AdminController {
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(personsService.getAll(), HttpStatus.OK);
     }
+    ///Search By ID, Email, Phone, Role
+    @RequestMapping(value = "/search/{searchId}", method = RequestMethod.GET)
+    public List<Persons> searchUsers(@PathVariable String searchId){
+        return personsService.findBySearch(searchId);
+    }
     ///More Complex Booking Request Mapping
 
     ///Cancel Booking Request Mapping

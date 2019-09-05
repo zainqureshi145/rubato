@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+//CTRL + SHIFT + / to comment block of code
+//CTRL + / ==> To comment/uncomment a line
 @RestController
 @CrossOrigin
 @RequestMapping("/api/bands")
@@ -19,7 +20,7 @@ public class BandController {
         this.personsService = personsService;
     }
     ///Update Profile Information
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+/*    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateInfo(@PathVariable("id") long id, @RequestBody Persons persons){
         Persons currentPerson;
         currentPerson = personsService.findBySearchId(id);
@@ -36,7 +37,7 @@ public class BandController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
     ///Update Media, Not Working
     @RequestMapping(value = "/update-media/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateMedia(@PathVariable("id") long id, @RequestBody Persons persons){
@@ -53,7 +54,7 @@ public class BandController {
         }
     }
     ///Delete Profile
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+ /*   @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id, Persons persons){
         Persons currentPerson = personsService.findBySearchId(id);
         if(currentPerson == null){
@@ -61,5 +62,5 @@ public class BandController {
         }
         personsService.deletePersonById(id);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    }*/
 }

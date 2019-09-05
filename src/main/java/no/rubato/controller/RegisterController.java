@@ -41,23 +41,6 @@ public class RegisterController {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
     }
-    /*//public RegisterController() {
-    //}
-
-    //@Autowired
-    //public PersonsRepository personsRepository;//personsRepository Object
-    //@Autowired
-    //public PersonsService personsService;//personsService Object
-    @Autowired
-    private MapValidationErrorService mapValidationErrorService;
-    @Autowired
-    private PersonValidator personValidator;
-    @Autowired
-    private JwtTokenProvider tokenProvider;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-     */
 
     ////Register Person
     @CrossOrigin

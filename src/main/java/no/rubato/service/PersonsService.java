@@ -13,23 +13,22 @@ import java.util.stream.Collectors;
 @Service("personsService")
 public class PersonsService {
 
-    @Autowired
-    private PersonsRepository personsRepository;
+    private final PersonsRepository personsRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    public PersonsService(PersonsRepository personsRepository) {
+    public PersonsService(PersonsRepository personsRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.personsRepository = personsRepository;
     }
 
-    //Search Function Unused For Now
-    public List<Persons> findBySearchId(String searchId) {
+    //Search Function
+    public List<Persons> findBySearch(String searchId) {
         return personsRepository.findAll().stream().filter(
                 persons -> persons.getUsername().equals(searchId) ||
                         persons.getPhone().equals(searchId) ||
-                        persons.getRole().equals(searchId)
+                        persons.getRole().equals(searchId) ||
+                        persons.getIdPerson() == Long.parseLong(searchId)
         ).collect(Collectors.toList());
     }
     //Find By id
@@ -64,4 +63,3 @@ public class PersonsService {
         personsRepository.deleteById(id);
     }
 }
-
