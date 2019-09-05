@@ -62,13 +62,13 @@ public class Persons implements UserDetails {
     @Column(name = "price")
     private String price;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "persons", cascade = javax.persistence.CascadeType.ALL)
     private List<Images> images;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "persons", cascade = javax.persistence.CascadeType.ALL, orphanRemoval = true)
     private List<Audio> audio;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "persons", cascade = javax.persistence.CascadeType.ALL, orphanRemoval = true)
     private List<Video> video;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "persons", cascade = CascadeType.ALL)
     private List<Orders> orders;
     //OneToMany with Project
     //@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "person", orphanRemoval = true)

@@ -8,7 +8,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_order")
-    private int idOrder;
+    private long idOrder;
     @Column(name = "transaction")
     private String transaction;
 
@@ -18,11 +18,11 @@ public class Orders {
 ////Generate Getters and Setters
 
 
-    public int getIdOrder() {
+    public long getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(int idOrder) {
+    public void setIdOrder(long idOrder) {
         this.idOrder = idOrder;
     }
 

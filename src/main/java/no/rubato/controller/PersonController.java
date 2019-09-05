@@ -11,13 +11,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/admin/")
-public class AdminController {
+@RequestMapping("/api/person/")
+public class PersonController {
 
     private final PersonsService personsService;
 
     @Autowired
-    public AdminController(PersonsService personsService) {
+    public PersonController(PersonsService personsService) {
         this.personsService = personsService;
     }
     ///Update Profile Information
@@ -46,12 +46,12 @@ public class AdminController {
         personsService.deletePersonById(id);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    ///List All Users
+    ///List All Users For Admin Use Only
     @GetMapping("/list-all")//Show all Users from Database
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(personsService.getAll(), HttpStatus.OK);
     }
-    ///Search By ID, Email, Phone, Role
+    ///Search By ID, Email, Phone, Role, Orders For Admin Use Only
     @RequestMapping(value = "/search/{searchId}", method = RequestMethod.GET)
     public List<Persons> searchUsers(@PathVariable String searchId){
         return personsService.findBySearch(searchId);
