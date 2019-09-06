@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("personsService")
@@ -24,12 +26,16 @@ public class PersonsService {
 
     //Search Function
     public List<Persons> findBySearch(String searchId) {
-        return personsRepository.findAll().stream().filter(
-                persons -> persons.getUsername().equals(searchId) ||
-                        persons.getPhone().equals(searchId) ||
-                        persons.getRole().equals(searchId) ||
-                        persons.getIdPerson() == Long.parseLong(searchId)
-        ).collect(Collectors.toList());
+            return personsRepository.findAll().stream().filter(Objects::nonNull).filter(
+                    persons -> persons.getUsername().equals(searchId) ||
+                            persons.getPhone().equals(searchId) ||//Search By Phone
+                            persons.getVipps().equals(searchId) ||//Search By Vipps
+                            persons.getAbout().equals(searchId) ||//Search By about
+                            persons.getName().equals(searchId) ||//Search by Name
+                            persons.getRole().equals(searchId) ||//Search By Role
+                            persons.getPrice().equals(searchId) //||//Search By Price
+                            //persons.getIdPerson() == Long.parseLong(searchId)//Search By Id
+            ).collect(Collectors.toList());
     }
     //Find By id
     public Persons findBySearchId(long id){
@@ -48,11 +54,6 @@ public class PersonsService {
         } catch (Exception e) {
             throw new UsernameAlreadyExistsException("Username '" + persons.getUsername() + "' already exists");
         }
-    }
-    //Update
-    public void updatePerson(Persons persons){
-        persons.setPassword(bCryptPasswordEncoder.encode(persons.getPassword()));
-        personsRepository.save(persons);
     }
     //List All Users for Admin Dashboard
     public List<Persons> getAll(){

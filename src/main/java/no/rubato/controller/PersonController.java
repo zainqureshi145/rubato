@@ -27,13 +27,19 @@ public class PersonController {
         if(currentPerson == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        currentPerson.setUsername(persons.getUsername());
-        currentPerson.setName(persons.getName());
-        currentPerson.setPassword(persons.getPassword());
-        currentPerson.setConfirmPassword(persons.getConfirmPassword());
-        currentPerson.setPhone(persons.getPhone());
+        currentPerson.setUsername(persons.getUsername());//email
+        currentPerson.setName(persons.getName());//name
+        currentPerson.setPassword(persons.getPassword());//password
+        currentPerson.setConfirmPassword(persons.getConfirmPassword());//confirmPassword
+        currentPerson.setPhone(persons.getPhone());//phone
+        currentPerson.setPrice(persons.getPrice());//price
+        currentPerson.setVipps(persons.getVipps());//vipps
+        currentPerson.setAbout(persons.getAbout());//about
+        currentPerson.setRole(persons.getRole());//Role
 
-        personsService.updatePerson(currentPerson);
+
+
+        personsService.savePerson(currentPerson);
         return new ResponseEntity<>(persons, HttpStatus.OK);
     }
     ///Delete Profile
@@ -51,10 +57,15 @@ public class PersonController {
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(personsService.getAll(), HttpStatus.OK);
     }
-    ///Search By ID, Email, Phone, Role, Orders For Admin Use Only
+    ///Search By Email, Phone, Role, Orders For Admin Use Only
     @RequestMapping(value = "/search/{searchId}", method = RequestMethod.GET)
     public List<Persons> searchUsers(@PathVariable String searchId){
         return personsService.findBySearch(searchId);
+    }
+    //Search By Id
+    @RequestMapping(value = "/searchById/{id}", method = RequestMethod.GET)
+    public Persons searchPersonById(@PathVariable long id){
+        return personsService.findBySearchId(id);
     }
     ///More Complex Booking Request Mapping
 

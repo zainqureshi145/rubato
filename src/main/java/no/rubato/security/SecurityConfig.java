@@ -85,12 +85,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 .antMatchers(SIGN_UP_URLS).permitAll()
                 .antMatchers(VIEW_PERSON).permitAll()
-                .antMatchers(VIEW_BANDS).permitAll()
-                .antMatchers(VIEW_USERS).permitAll()
-                .antMatchers(IMAGES).permitAll()
-                .antMatchers(AUDIO).permitAll()
-                .antMatchers(VIDEO).permitAll()
-                .antMatchers(ORDER).permitAll()
+                //.antMatchers(IMAGES).permitAll()
+                //.antMatchers(AUDIO).permitAll()
+                //.antMatchers(VIDEO).permitAll()
+                //.antMatchers(ORDER).permitAll()
                 .anyRequest()
                 //.hasRole("admin");
                 .authenticated();

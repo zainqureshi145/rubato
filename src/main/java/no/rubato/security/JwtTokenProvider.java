@@ -25,6 +25,7 @@ public class JwtTokenProvider {
         claims.put("idPerson", Long.toString(persons.getIdPerson()));
         claims.put("username", persons.getUsername());
         claims.put("role", persons.getRole());
+        claims.put("name", persons.getName());
 
 
         return Jwts.builder()
